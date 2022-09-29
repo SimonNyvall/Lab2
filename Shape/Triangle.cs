@@ -1,73 +1,59 @@
 ﻿using System.Numerics;
 using System.Runtime.InteropServices;
 
-namespace Shape
+namespace Shape;
+
+public class Triangle : Shape2D
 {
-    public class Triangle : Shape2D
+    private Vector3 center;
+
+    private (float A, float B, float C) side;
+
+    private (Vector2 p1, Vector2 p2, Vector2 p3) cornerPoints;     
+
+    public Triangle(Vector2 p1, Vector2 p2, Vector2 p3)
     {
-        private Vector3 center;
+        cornerPoints.p1 = p1;
+        cornerPoints.p2 = p2;
+        cornerPoints.p3 = p3;
 
-        private float sideA;
-        private float sideB;
-        private float sideC;
+        GetTriangleSides();
 
-        private Vector2 p1;
-        private Vector2 p2;
-        private Vector2 p3;
+        center = new Vector3((p1.X + p2.X + p3.X) / 3, (p1.Y + p2.Y + p3.Y) / 3, 0.0f);
+    }
 
-        public Triangle(Vector2 p1, Vector2 p2, Vector2 p3)
+    public override float Area
+    {
+        get
         {
-            this.p1 = p1;
-            this.p2 = p2;
-            this.p3 = p3;
-
-            GetTriangleSides();
-
-            center = new Vector3((p1.X + p2.X + p3.X) / 3, (p1.Y + p2.Y + p3.Y) / 3, 0.0f);
+            float CosDegree_C = (MathF.Pow(side.C, 2) - MathF.Pow(side.A, 2) - MathF.Pow(side.B, 2)) / (-2 * side.A * side.B);
+            float Degree_C = MathF.Acos(CosDegree_C);
+            return (side.A * side.B * MathF.Sin(Degree_C)) / 2;
         }
+    }
+    private void GetTriangleSides()
+    {           
+        side.A = CalulateDistance(cornerPoints.p3, cornerPoints.p2);
+        side.B = CalulateDistance(cornerPoints.p1, cornerPoints.p3);
+        side.C = CalulateDistance(cornerPoints.p1, cornerPoints.p2);
+    }
+    private float CalulateDistance(Vector2 firstPoint, Vector2 secondPoint)
+    {
+        return MathF.Sqrt(MathF.Pow(secondPoint.X - firstPoint.X, 2) + MathF.Pow(secondPoint.Y - firstPoint.Y, 2));
+    }
 
-        public override float Area
-        {
-            get
-            {
-                // Areasatsen T = (ab sin(C))/2
-                // beräkna vinkel C & sidan för a och b.
-                // c^2 = a^2 + b^2 - 2 * a * b * cos(C)
-                // behöver alla sidor på triandgen
+    public override Vector3 Center
+    {
+        get => center;
+    }
 
-                float CosDegree_C = (MathF.Pow(sideC, 2) - MathF.Pow(sideA, 2) - MathF.Pow(sideB, 2)) / (-2 * sideA * sideB);
-                float Degree_C = MathF.Acos(CosDegree_C);
-                return (sideA * sideB * MathF.Sin(Degree_C)) / 2;
+    public override float Circumference
+    {
+        get => side.A + side.B + side.C;
+    }
 
-                // (c^2 - a^2 - b^2)/(-2*a*b) = Cos(C)
-                // Cos^-1(C) = C
-            }
-        }
-        private void GetTriangleSides()
-        {
-            sideA = CalulateDistance(p3, p2);
-            sideB = CalulateDistance(p1, p3);
-            sideC = CalulateDistance(p1, p2);
-        }
-        private float CalulateDistance(Vector2 firstPoint, Vector2 secondPoint)
-        {
-            // d = sqrt( (x2 - x1)^2 + (y2 - y1)^2 )
-            return MathF.Sqrt(MathF.Pow(secondPoint.X - firstPoint.X, 2) + MathF.Pow(secondPoint.Y - firstPoint.Y, 2));
-        }
-
-        public override Vector3 Center
-        {
-            get => center;
-        }
-
-        public override float Circumference
-        {
-            get => sideA + sideB + sideC;
-        }
-
-        public override string ToString()
-        {
-            return $"triangle @({center.X}, {center.Y}): p1({p1}), p2({p2}), p3({p3})";
-        }
+    public override string ToString()
+    {
+        return $"triangle @({center.X}, {center.Y}): p1({cornerPoints.p1}), p2({cornerPoints.p2}), p3({cornerPoints.p3})";
     }
 }
