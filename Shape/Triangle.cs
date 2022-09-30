@@ -22,6 +22,18 @@ public class Triangle : Shape2D
         center = new Vector3((p1.X + p2.X + p3.X) / 3, (p1.Y + p2.Y + p3.Y) / 3, 0.0f);
     }
 
+    public Triangle(Vector2 p1, Vector2 p2, Vector3 center)
+    {
+        cornerPoints.p1 = p1;
+        cornerPoints.p2 = p2;
+        cornerPoints.p3.X = 3 * center.X - p1.X - p2.X;
+        cornerPoints.p3.Y = 3 * center.Y - p1.Y - p2.Y;
+
+        GetTriangleSides();
+
+        center = new Vector3((p1.X + p2.X + cornerPoints.p3.X) / 3, (p1.Y + p2.Y + cornerPoints.p3.Y) / 3, 0.0f);
+    }
+
     public override float Area
     {
         get

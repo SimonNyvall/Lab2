@@ -7,40 +7,31 @@ internal class Program
 {
     static void Main(string[] args)
     {
+        Shape.Shape[] shape = new Shape.Shape[20];
 
-        //public Circle(Vector2 center, float radius)
-        //{
-        //    this.center = new Vector3(center.X, center.Y, 0.0f);
-        //}
+        for (int i = 0; i < shape.Length; i++)
+        {
+            shape[i] = Shape.Shape.GenerateShape();
+        }
 
+        float areaSum = 0;
+        float cercumferenceSum = 0;
 
+        for (int i = 0; i < shape.Length; i++)
+        {
+            areaSum += shape[i].Area;
+            
+            if (shape[i] is Triangle)
+            {
+                //cercumferenceSum += shape[i].c
+            }
+        }
 
-        //Console.WriteLine(new Circle(new Vector2(3.0f, 4.0f), 2.0f));
+        float genomsnittArea = areaSum / shape.Length;
 
+        Console.WriteLine(genomsnittArea);
 
-        //Circle cir = new Circle(new Vector2(3.0f, 4.0f), 2.0f);
-
-        //Console.WriteLine($"Area {cir.Area}");
-        //Console.WriteLine($"Center {cir.Center}");
-        //Console.WriteLine($"Circumferance {cir.Circumference}");
-
-        //Console.WriteLine(new Rectangle(new Vector2(3.0f, 4.0f), new Vector2(4.0f, 5.0f))); ;
-
-        //Rectangle rec = new Rectangle(new Vector2(3.0f, 4.0f), 4.5f);
-
-        //Console.WriteLine(rec.IsSquare);
-        //Console.WriteLine($"Area: {rec.Area}");
-        //Console.WriteLine($"Center {rec.Center}");
-        //Console.WriteLine($"Circumferance {rec.Circumference}");
-
-        //Triangle tri = new(new Vector2(3.0f, 3.0f), new Vector2(2.0f, 1.0f), new Vector2(1.0f, 5.0f));
-
-        //Console.WriteLine(tri.Area);
-        //Console.WriteLine(tri.Center);
-        //Console.WriteLine(tri.Circumference);
-        //Console.WriteLine(tri.ToString());
-
-        //Shape.GenerateShape();
+       
 
     }
 }
