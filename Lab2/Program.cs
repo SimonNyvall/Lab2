@@ -17,15 +17,15 @@ internal class Program
         }
         
         float areaSum = GetAreaSum(shapes);
-        float genomsnittArea = areaSum / shapes.Length;
+        float averageArea = areaSum / shapes.Length;
 
-        float cercumferenceSum = GetCircumferenceSum(shapes);
+        float circumferanceSum = GetCircumferenceSum(shapes);
         float biggestArea3D = GetBiggest3DArea(shapes);
 
-        var shapeOccorrance = GetMostOccorrantShape(shapes);
+        var shapeOccurrance = GetMostOccurrantShape(shapes);
 
-        PrintOutput(genomsnittArea, cercumferenceSum, biggestArea3D);
-        PrintOutput(shapeOccorrance);
+        PrintOutput(averageArea, circumferanceSum, biggestArea3D);
+        PrintOutput(shapeOccurrance);
     }
     static float GetAreaSum(Shape.Shape[] shapes)
     {
@@ -50,30 +50,30 @@ internal class Program
     {       
         return shapes.Where(t => t is Shape3D).Max(a => a.Area);
     }
-    static (string, int) GetMostOccorrantShape(Shape.Shape[] shapes)
+    static (string, int) GetMostOccurrantShape(Shape.Shape[] shapes)
     {
-        var shapeOccorrance = new (string shape, int occurance)[5];
+        var shapeOccurrance = new (string shape, int occurrance)[5];
 
-        shapeOccorrance[0] = ("Circle", shapes.Count(c => c is Circle));
-        shapeOccorrance[1] = ("Cuboid", shapes.Count(c => c is Cuboid));
-        shapeOccorrance[2] = ("Rectangle", shapes.Count(c => c is Rectangle));
-        shapeOccorrance[3] = ("Sphere", shapes.Count(c => c is Sphere));
-        shapeOccorrance[4] = ("Triangle", shapes.Count(c => c is Triangle));
+        shapeOccurrance[0] = ("Circle", shapes.Count(c => c is Circle));
+        shapeOccurrance[1] = ("Cuboid", shapes.Count(c => c is Cuboid));
+        shapeOccurrance[2] = ("Rectangle", shapes.Count(c => c is Rectangle));
+        shapeOccurrance[3] = ("Sphere", shapes.Count(c => c is Sphere));
+        shapeOccurrance[4] = ("Triangle", shapes.Count(c => c is Triangle));
 
         (string, int) returnValue = ("defult", 0);
 
-        int maxOccurrance = shapeOccorrance.Max(o => o.occurance);
+        int maxOccurrance = shapeOccurrance.Max(occ => occ.occurrance);
 
-        foreach (var item in shapeOccorrance)
+        foreach (var item in shapeOccurrance)
         {
-            if (maxOccurrance == item.occurance)
+            if (maxOccurrance == item.occurrance)
                 returnValue = item;
         }
         return returnValue;
     }
-    static void PrintOutput(float genomsnittArea, float cercumferenceSum, float biggestArea3D)
+    static void PrintOutput(float averageArea, float cercumferenceSum, float biggestArea3D)
     {
-        Console.WriteLine($"Avrage area: {genomsnittArea}");
+        Console.WriteLine($"Avrage area: {averageArea}");
         Console.WriteLine($"Sum of circumferance: {cercumferenceSum}");
         Console.WriteLine($"Biggest 3D Area: {biggestArea3D}");
     }
