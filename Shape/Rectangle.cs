@@ -35,17 +35,17 @@ public class Rectangle : Shape2D
 
     public override float Area
     {
-        get { return width * height; }
+        get => width * height; 
     }
 
     public override Vector3 Center
     {
-        get { return new Vector3(width / 2, height / 2, 0.0f); }
+        get => new Vector3(width / 2, height / 2, 0.0f); 
     }
 
     public override float Circumference
     {
-        get { return width * 2 + height * 2; }
+        get => width * 2 + height * 2; 
     }
 
     public override string ToString()

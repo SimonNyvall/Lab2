@@ -6,9 +6,7 @@ namespace Shape;
 public class Triangle : Shape2D
 {
     private Vector3 center;
-
     private (float A, float B, float C) side;
-
     private (Vector2 p1, Vector2 p2, Vector2 p3) cornerPoints;     
 
     public Triangle(Vector2 p1, Vector2 p2, Vector2 p3)
@@ -25,9 +23,8 @@ public class Triangle : Shape2D
     public Triangle(Vector2 p1, Vector2 p2, Vector3 center)
     {
         cornerPoints.p1 = p1;
-        cornerPoints.p2 = p2;
-        cornerPoints.p3.X = 3 * center.X - p1.X - p2.X;
-        cornerPoints.p3.Y = 3 * center.Y - p1.Y - p2.Y;
+        cornerPoints.p2 = p2;        
+        cornerPoints.p3 = new Vector2(3 * center.X - p1.X - p2.X, 3 * center.Y - p1.Y - p2.Y);
 
         GetTriangleSides();
 
@@ -50,8 +47,8 @@ public class Triangle : Shape2D
         side.C = CalulateDistance(cornerPoints.p1, cornerPoints.p2);
     }
     private float CalulateDistance(Vector2 firstPoint, Vector2 secondPoint)
-    {
-        return MathF.Sqrt(MathF.Pow(secondPoint.X - firstPoint.X, 2) + MathF.Pow(secondPoint.Y - firstPoint.Y, 2));
+    {        
+        return Vector2.Distance(firstPoint, secondPoint);        
     }
 
     public override Vector3 Center

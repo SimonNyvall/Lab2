@@ -20,15 +20,15 @@ public class Circle : Shape2D
 
     public override float Area
     {
-        get { return MathF.PI * MathF.Pow(radius, 2); }
+        get => MathF.PI * MathF.Pow(radius, 2); 
     }
     public override Vector3 Center
     {
-        get { return new Vector3(center.X, center.Y, 0.0f); }
+        get => new Vector3(center.X, center.Y, 0.0f); 
     }
     public override float Circumference
     {
-        get { return radius * MathF.PI * 2; }           
+        get => radius * MathF.PI * 2;
     }
     public override string ToString()
     {

@@ -20,17 +20,17 @@ public class Sphere : Shape3D
 
     public override float Area
     {
-        get { return 4 * MathF.PI * MathF.Pow(radius, 2); }
+        get => 4 * MathF.PI * MathF.Pow(radius, 2); 
     }
 
     public override float Volume
     {
-        get { return (4 * MathF.PI * MathF.Pow(radius, 3)) / 3; }
+        get => (4 * MathF.PI * MathF.Pow(radius, 3)) / 3; 
     }
 
     public override Vector3 Center
     {
-        get { return center; }
+        get => center; 
     }
 
     public override string ToString()

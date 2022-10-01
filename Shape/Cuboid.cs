@@ -27,26 +27,25 @@ public class Cuboid : Shape3D
     public Cuboid(Vector3 center, float width)
     {
         this.center = center;
-        size.X = width;
-        size.Y = width;
-        size.Z = width;
+      
+        size = Vector3.One * width;
 
         IsCube = true;
     }
 
     public override float Area
     {
-        get { return 2 * (size.X * size.Y + size.X * size.Z + size.Y * size.Z); }
+        get => 2 * (size.X * size.Y + size.X * size.Z + size.Y * size.Z); 
     }
 
     public override float Volume
     {
-        get { return size.X * size.Y * size.Z; }
+        get => size.X * size.Y * size.Z; 
     }
 
     public override Vector3 Center
     {
-        get { return new Vector3(center.X, center.Y, center.Z); }
+        get => new Vector3(center.X, center.Y, center.Z); 
     }
 
     public override string ToString()
