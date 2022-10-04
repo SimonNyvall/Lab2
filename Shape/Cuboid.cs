@@ -51,8 +51,8 @@ public class Cuboid : Shape3D
     public override string ToString()
     {
         if (IsCube) 
-            return $"cuboid @({center.X}, {center.Y}, {center.Z}): w = {size.X}, h = {size.Y}, l = {size.Z}";
+            return $"cube @({center.X}; {center.Y}; {center.Z}): w = {size.X}, h = {size.Y}, l = {size.Z}";
         else
-            return $"cube @({center.X}, {center.Y}, {center.Z}): w = {size.X}, h = {size.Y}, l = {size.Z}";
+            return $"cuboid @({center.X}; {center.Y}; {center.Z}): w = {size.X}, h = {size.Y}, l = {size.Z}";
     }
 }

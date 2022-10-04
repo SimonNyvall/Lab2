@@ -51,8 +51,8 @@ public class Rectangle : Shape2D
     public override string ToString()
     {
         if (IsSquare) 
-            return $"square @({center.X}, {center.Y}): w = {width}, h = {height}";
+            return $"square @({center.X}; {center.Y}): w = {width}; h = {height}";
         else
-            return $"rectangle @({center.X}, {center.Y}): w = {width}, h = {height}";
+            return $"rectangle @({center.X}; {center.Y}): w = {width}; h = {height}";
     }
 }

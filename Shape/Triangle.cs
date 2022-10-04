@@ -64,6 +64,6 @@ public class Triangle : Shape2D
 
     public override string ToString()
     {
-        return $"triangle @({center.X}, {center.Y}): p1({cornerPoints.p1}), p2({cornerPoints.p2}), p3({cornerPoints.p3})";
+        return $"triangle @({center.X}; {center.Y}): p1({cornerPoints.p1}); p2({cornerPoints.p2}); p3({cornerPoints.p3})";
     }
 }
