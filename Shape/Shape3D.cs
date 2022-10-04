@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shape;
+namespace ShapeNameSpace;
 
 public abstract class Shape3D : Shape
 {

@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using System.Runtime.InteropServices;
 
-namespace Shape;
+namespace ShapeNameSpace;
 
 public class Triangle : Shape2D
 {
@@ -35,9 +35,10 @@ public class Triangle : Shape2D
     {
         get
         {
+            // Cos(C) = (c^2 - a^2 - b^2) / ( -2 * ab )
             float CosDegree_C = (MathF.Pow(side.C, 2) - MathF.Pow(side.A, 2) - MathF.Pow(side.B, 2)) / (-2 * side.A * side.B);
-            float Degree_C = MathF.Acos(CosDegree_C);
-            return (side.A * side.B * MathF.Sin(Degree_C)) / 2;
+            // T = abSin(C) / 2
+            return side.A * side.B * MathF.Sin(MathF.Acos(CosDegree_C)) / 2;
         }
     }
     private void GetTriangleSides()
@@ -48,7 +49,7 @@ public class Triangle : Shape2D
     }
     private float CalulateDistance(Vector2 firstPoint, Vector2 secondPoint)
     {        
-        return Vector2.Distance(firstPoint, secondPoint);        
+        return Vector2.Distance(firstPoint, secondPoint);
     }
 
     public override Vector3 Center

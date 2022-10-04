@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shape;
+namespace ShapeNameSpace;
 
 public class Cuboid : Shape3D
 {
@@ -50,6 +50,9 @@ public class Cuboid : Shape3D
 
     public override string ToString()
     {
-        return $"cuboid @({center.X}, {center.Y}, {center.Z}): w = {size.X}, h = {size.Y}, l = {size.Z}";
+        if (IsCube) 
+            return $"cuboid @({center.X}, {center.Y}, {center.Z}): w = {size.X}, h = {size.Y}, l = {size.Z}";
+        else
+            return $"cube @({center.X}, {center.Y}, {center.Z}): w = {size.X}, h = {size.Y}, l = {size.Z}";
     }
 }

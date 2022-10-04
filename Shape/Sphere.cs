@@ -5,7 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shape;
+namespace ShapeNameSpace;
 
 public class Sphere : Shape3D
 {

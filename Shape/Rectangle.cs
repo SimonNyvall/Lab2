@@ -5,7 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shape;
+namespace ShapeNameSpace;
 
 public class Rectangle : Shape2D
 {
@@ -50,6 +50,9 @@ public class Rectangle : Shape2D
 
     public override string ToString()
     {
-        return $"rectangle @({center.X}, {center.Y}): w = {width}, h = {height}";
+        if (IsSquare) 
+            return $"square @({center.X}, {center.Y}): w = {width}, h = {height}";
+        else
+            return $"rectangle @({center.X}, {center.Y}): w = {width}, h = {height}";
     }
 }
