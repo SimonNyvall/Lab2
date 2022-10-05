@@ -5,7 +5,7 @@ namespace ShapeNameSpace;
 
 public class Triangle : Shape2D
 {
-    private Vector3 center;
+    private Vector3 center;    
     private (float A, float B, float C) side;
     private (Vector2 p1, Vector2 p2, Vector2 p3) cornerPoints;     
 
@@ -17,7 +17,7 @@ public class Triangle : Shape2D
 
         GetTriangleSides();
 
-        center = new Vector3((p1.X + p2.X + p3.X) / 3, (p1.Y + p2.Y + p3.Y) / 3, 0.0f);
+        center = new Vector3(MathF.Round((p1.X + p2.X + p3.X) / 3, 1), MathF.Round((p1.Y + p2.Y + p3.Y) / 3, 1), 0.0f);
     }
 
     public Triangle(Vector2 p1, Vector2 p2, Vector3 center)

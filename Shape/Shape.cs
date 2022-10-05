@@ -9,11 +9,12 @@ public abstract class Shape
     public abstract Vector3 Center { get; }
     public abstract float Area { get; }
 
+    private static float maxVlaue = 10.0f;
+    private static int decimalPoints = 1;
+
     public static Shape GenerateShape()
     {
         Random rnd = new Random();
-        float maxVlaue = 10.0f;
-        int decimalPoints = 1;
 
         float random_x = MathF.Round(rnd.NextSingle() * maxVlaue, decimalPoints);
         float random_y = MathF.Round(rnd.NextSingle() * maxVlaue, decimalPoints);        
@@ -38,10 +39,7 @@ public abstract class Shape
     {
         Vector2 center2D = new Vector2(center3D.X, center3D.Y);
 
-        Random rnd = new Random();
-
-        float maxVlaue = 10.0f;
-        int decimalPoints = 1;
+        Random rnd = new Random();        
 
         float random_x = MathF.Round(rnd.NextSingle() * maxVlaue, decimalPoints);
         float random_y = MathF.Round(rnd.NextSingle() * maxVlaue, decimalPoints);

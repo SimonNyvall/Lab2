@@ -22,11 +22,11 @@ internal class Program
         float triangleCircumferenceSum = GetTriangleCircumferenceSum(shapes);
         float biggestVolume3D = GetBiggest3DVolume(shapes);
 
-        var shapeOccurrance = GetMostOccurrantShape(shapes);
+        var shapeOccurrence = GetMostOccurrentShape(shapes);
 
         PrintArray(shapes);
         PrintOutput(averageArea, triangleCircumferenceSum, biggestVolume3D);
-        PrintOutput(shapeOccurrance);
+        PrintOutput(shapeOccurrence);
     }
     static float GetAreaSum(Shape[] shapes)
     {
@@ -40,17 +40,17 @@ internal class Program
     {               
         return shapes.OfType<Shape3D>().Max(a => a.Volume);
     }
-    static KeyValuePair<string, int> GetMostOccurrantShape(Shape[] shapes)
+    static KeyValuePair<string, int> GetMostOccurrentShape(Shape[] shapes)
     {
         var shapeOccurrence = new Dictionary<string, int>();
 
         shapeOccurrence.Add("Triangle", shapes.Count(t => t is Triangle));
         shapeOccurrence.Add("Circle", shapes.Count(t => t is Circle));
         shapeOccurrence.Add("Sphere", shapes.Count(t => t is Sphere));
-        shapeOccurrence.Add("Squre", shapes.OfType<Rectangle>().Count(t => t.IsSquare is true));
+        shapeOccurrence.Add("Square", shapes.OfType<Rectangle>().Count(t => t.IsSquare is true));
         shapeOccurrence.Add("Rectangle", shapes.OfType<Rectangle>().Count(t => t.IsSquare is false));
         shapeOccurrence.Add("Cube", shapes.OfType<Cuboid>().Count(t => t.IsCube is true));
-        shapeOccurrence.Add("Cuboid", shapes.OfType<Cuboid>().Count(t => t.IsCube is false));
+        shapeOccurrence.Add("Cuboid", shapes.OfType<Cuboid>().Count(t => t.IsCube is false));        
 
         int highestValue = shapeOccurrence.Max(occ => occ.Value);
         for (int i = 0; i < shapeOccurrence.Count; i++)
