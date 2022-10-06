@@ -17,13 +17,12 @@ internal class Program
             shapes[i] = Shape.GenerateShape();
         }
 
-        float areaSum = GetAreaSum(shapes);
-        float averageArea = areaSum / shapes.Length;
+        float averageArea = GetAverageArea(shapes);         
 
         float triangleCircumferenceSum = GetTriangleCircumferenceSum(shapes);
         float biggestVolume3D = GetBiggest3DVolume(shapes);
 
-        var shapeOccurrence = GetMostOccurrentShape(shapes);
+        KeyValuePair<string, int> shapeOccurrence = GetMostOccurrentShape(shapes);
 
         string[] sortedShapeArray = SortShapeArray(shapes);
         PrintArray(sortedShapeArray);
@@ -33,9 +32,9 @@ internal class Program
 
         Console.ReadLine();
     }
-    static float GetAreaSum(Shape[] shapes)
+    static float GetAverageArea(Shape[] shapes)
     {
-        return shapes.Sum(s => s.Area);
+        return shapes.Average(a => a.Area);
     }
     static float GetTriangleCircumferenceSum(Shape[] shapes)
     {
@@ -72,9 +71,17 @@ internal class Program
     {
         string[] sortedShapeArray = new string[shapes.Length];
 
-        Func<Shape, string> ShapeToString = (Shape input) => input.ToString() ?? string.Empty;
+        try
+        {
+            Func<Shape, string> ShapeToString = (Shape input) => input.ToString() ?? string.Empty;
+            sortedShapeArray = Array.ConvertAll(shapes, new Converter<Shape, string>(ShapeToString));
+        }
+        catch(Exception ex)
+        {
+            Console.Clear();
+            Console.WriteLine(ex);
+        }
 
-        sortedShapeArray = Array.ConvertAll(shapes, new Converter<Shape, String>(ShapeToString));
         Array.Sort(sortedShapeArray);
 
         return sortedShapeArray;
