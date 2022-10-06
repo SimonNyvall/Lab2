@@ -54,10 +54,8 @@ public class Triangle : Shape2D
 
     private float CalculateTriangleArea()
     {
-        // Cos(C) = (c^2 - a^2 - b^2) / ( -2 * ab )
-        float CosDegree_C = (MathF.Pow(side.C, 2) - MathF.Pow(side.A, 2) - MathF.Pow(side.B, 2)) / (-2 * side.A * side.B);
-        // T = abSin(C) / 2
-        return side.A * side.B * MathF.Sin(MathF.Acos(CosDegree_C)) / 2;
+        float s = (side.A + side.B + side.C) / 2;
+        return MathF.Sqrt(s * (s - side.A) * (s - side.B) * (s - side.C));
     }
 
     public override float Area
