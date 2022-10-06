@@ -1,4 +1,5 @@
 ﻿using ShapeNameSpace;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Numerics;
 using System.Reflection.Metadata;
@@ -24,9 +25,13 @@ internal class Program
 
         var shapeOccurrence = GetMostOccurrentShape(shapes);
 
-        PrintArray(shapes);
+        string[] sortedShapeArray = SortShapeArray(shapes);
+        PrintArray(sortedShapeArray);
+
         PrintOutput(averageArea, triangleCircumferenceSum, biggestVolume3D);
         PrintOutput(shapeOccurrence);
+
+        Console.ReadLine();
     }
     static float GetAreaSum(Shape[] shapes)
     {
@@ -63,8 +68,21 @@ internal class Program
 
         return new KeyValuePair<string, int>("No Shape Found", 0);
     }
-    static void PrintArray(Shape[] shapes)
+    static string[] SortShapeArray(Shape[] shapes)
     {
+        string[] sortedShapeArray = new string[shapes.Length];
+
+        Func<Shape, string> ShapeToString = (Shape input) => input.ToString() ?? string.Empty;
+
+        sortedShapeArray = Array.ConvertAll(shapes, new Converter<Shape, String>(ShapeToString));
+        Array.Sort(sortedShapeArray);
+
+        return sortedShapeArray;
+    }
+    static void PrintArray(string[] shapes)
+    {
+        Console.WriteLine("{0, -9} {1, -22} {2}", "Shape", "Center", "Values" + "\n");
+
         foreach (var shape in shapes)
         {
             Console.WriteLine(shape);
@@ -72,12 +90,12 @@ internal class Program
     }
     static void PrintOutput(float averageArea, float triangleCercumferenceSum, float biggestVolume3D)
     {
-        Console.WriteLine($"\nAvrage area: {averageArea} units");
-        Console.WriteLine($"Sum of triangles circumferance: {triangleCercumferenceSum} units");
-        Console.WriteLine($"Biggest 3D Shapes volume: {biggestVolume3D} units");
+        Console.WriteLine($"\nAvrage area \t\t\t|: {averageArea} units");
+        Console.WriteLine($"Sum of triangles circumferance  |: {triangleCercumferenceSum} units");
+        Console.WriteLine($"Biggest 3D Shapes volume \t|: {biggestVolume3D} units");
     }
     static void PrintOutput(KeyValuePair<string, int> shapeOccorrance)
     {
-        Console.WriteLine($"Most occurrant shape was {shapeOccorrance.Key}, it occorred {shapeOccorrance.Value} times.");
+        Console.WriteLine($"\n  Most occurrant shape was {shapeOccorrance.Key}, it occorred {shapeOccorrance.Value} times.");
     }
 }

@@ -10,22 +10,28 @@ namespace ShapeNameSpace;
 public class Sphere : Shape3D
 {
     private Vector3 center;
+
     private float radius;
+    private float area;
+    private float volume;
 
     public Sphere(Vector3 center, float radius)
     {
         this.center = center;
         this.radius = radius;
+
+        area = 4 * MathF.PI * MathF.Pow(radius, 2);
+        volume = (4 * MathF.PI * MathF.Pow(radius, 3)) / 3;
     }
 
     public override float Area
     {
-        get => 4 * MathF.PI * MathF.Pow(radius, 2); 
+        get => area;
     }
 
     public override float Volume
     {
-        get => (4 * MathF.PI * MathF.Pow(radius, 3)) / 3; 
+        get => volume;
     }
 
     public override Vector3 Center
@@ -35,6 +41,6 @@ public class Sphere : Shape3D
 
     public override string ToString()
     {
-        return $"sphere @({center.X}; {center.Y}; {center.Z}): r = {radius}";
+        return $"sphere \t  @({center.X}; {center.Y}; {center.Z}):\t r = {radius}";
     }
 }

@@ -12,15 +12,21 @@ public class Circle : Shape2D
     private Vector2 center;
     private float radius;
 
+    private float area;
+    private float circumference;
+
     public Circle(Vector2 center, float radius)
     {
         this.center = new Vector2(center.X, center.Y);
         this.radius = radius;
+
+        area = MathF.PI * MathF.Pow(radius, 2);
+        circumference = radius * MathF.PI * 2;
     }
 
     public override float Area
     {
-        get => MathF.PI * MathF.Pow(radius, 2); 
+        get => area;
     }
     public override Vector3 Center
     {
@@ -28,11 +34,11 @@ public class Circle : Shape2D
     }
     public override float Circumference
     {
-        get => radius * MathF.PI * 2;
+        get => circumference;
     }
     public override string ToString()
     {
-        return $"circle @({center.X}; {center.Y}): r = {radius}";
+        return $"circle \t  @({center.X}; {center.Y}): \t\t r = {radius}";
     }
   
 }

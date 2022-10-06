@@ -13,6 +13,9 @@ public class Rectangle : Shape2D
     private float height;
     private Vector3 center;
 
+    private float area;
+    private float circumference;
+
     public bool IsSquare { get; private set; } = false;
 
     public Rectangle(Vector2 center, Vector2 size)
@@ -20,6 +23,9 @@ public class Rectangle : Shape2D
         this.center = new Vector3(center.X, center.Y, 0.0f);
         width = size.X;
         height = size.Y;
+
+        area = width * height;
+        circumference = width * 2 + height * 2;
 
         if (size.X == size.Y)
             IsSquare = true;
@@ -30,29 +36,30 @@ public class Rectangle : Shape2D
         this.center = new Vector3(center.X, center.Y, 0.0f);
         this.width = width;
         height = width;
+
+        area = width * height;
+        circumference = width * 2 + height * 2;
+
         IsSquare = true;
     }
 
     public override float Area
     {
-        get => width * height; 
+        get => area;
     }
 
     public override Vector3 Center
     {
-        get => new Vector3(width / 2, height / 2, 0.0f); 
+        get => new Vector3(center.X, center.Y, 0.0f); 
     }
 
     public override float Circumference
     {
-        get => width * 2 + height * 2; 
+        get => circumference;
     }
 
     public override string ToString()
     {
-        if (IsSquare) 
-            return $"square @({center.X}; {center.Y}): w = {width}; h = {height}";
-        else
-            return $"rectangle @({center.X}; {center.Y}): w = {width}; h = {height}";
+        return (IsSquare ? "square \t " : "rectangle") + $" @({center.X}; {center.Y}):\t\t w = {width}; h = {height}";       
     }
 }

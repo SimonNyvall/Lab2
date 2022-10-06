@@ -13,12 +13,17 @@ public class Cuboid : Shape3D
     private Vector3 center;
     private Vector3 size;
 
+    private float area;
+    private float volume;
     public bool IsCube { get; private set; } = false;
 
     public Cuboid(Vector3 center, Vector3 size)
     {
         this.center = center;
         this.size = size;
+
+        area = 2 * (size.X * size.Y + size.X * size.Z + size.Y * size.Z);
+        volume = size.X * size.Y * size.Z;
 
         if (size.X == size.Y && size.Y == size.Z)
             IsCube = true;
@@ -35,12 +40,12 @@ public class Cuboid : Shape3D
 
     public override float Area
     {
-        get => 2 * (size.X * size.Y + size.X * size.Z + size.Y * size.Z); 
+        get => area;
     }
 
     public override float Volume
     {
-        get => size.X * size.Y * size.Z; 
+        get => volume;
     }
 
     public override Vector3 Center
@@ -50,9 +55,6 @@ public class Cuboid : Shape3D
 
     public override string ToString()
     {
-        if (IsCube) 
-            return $"cube @({center.X}; {center.Y}; {center.Z}): w = {size.X}, h = {size.Y}, l = {size.Z}";
-        else
-            return $"cuboid @({center.X}; {center.Y}; {center.Z}): w = {size.X}, h = {size.Y}, l = {size.Z}";
+        return (IsCube ? "cube" : "cuboid") + $" \t  @({center.X}; {center.Y}; {center.Z}):\t w = {size.X}, h = {size.Y}, l = {size.Z}";        
     }
 }
