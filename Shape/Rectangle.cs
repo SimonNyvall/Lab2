@@ -60,6 +60,6 @@ public class Rectangle : Shape2D
 
     public override string ToString()
     {
-        return (IsSquare ? "square \t " : "rectangle") + $" @({center.X}; {center.Y}):\t\t w = {width}; h = {height}";       
+        return (IsSquare ? "Square \t " : "Rectangle") + $" @({center.X}; {center.Y}):\t\t w = {width}; h = {height}";       
     }
 }

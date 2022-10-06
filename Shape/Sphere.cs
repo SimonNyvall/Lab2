@@ -41,6 +41,6 @@ public class Sphere : Shape3D
 
     public override string ToString()
     {
-        return $"sphere \t  @({center.X}; {center.Y}; {center.Z}):\t r = {radius}";
+        return $"Sphere \t  @({center.X}; {center.Y}; {center.Z}):\t r = {radius}";
     }
 }

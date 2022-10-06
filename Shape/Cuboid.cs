@@ -55,6 +55,6 @@ public class Cuboid : Shape3D
 
     public override string ToString()
     {
-        return (IsCube ? "cube" : "cuboid") + $" \t  @({center.X}; {center.Y}; {center.Z}):\t w = {size.X}, h = {size.Y}, l = {size.Z}";        
+        return (IsCube ? "Cube" : "Cuboid") + $" \t  @({center.X}; {center.Y}; {center.Z}):\t w = {size.X}, h = {size.Y}, l = {size.Z}";        
     }
 }
