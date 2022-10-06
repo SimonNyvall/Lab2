@@ -1,4 +1,4 @@
-﻿using ShapeNameSpace;
+﻿using ShapeModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Numerics;

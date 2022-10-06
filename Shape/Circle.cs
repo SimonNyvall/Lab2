@@ -5,7 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShapeNameSpace;
+namespace ShapeModel;
 
 public class Circle : Shape2D
 {

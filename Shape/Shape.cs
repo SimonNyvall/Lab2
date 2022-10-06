@@ -2,7 +2,7 @@
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 
-namespace ShapeNameSpace;
+namespace ShapeModel;
 
 public abstract class Shape
 {

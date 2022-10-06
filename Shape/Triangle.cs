@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using System.Runtime.InteropServices;
 
-namespace ShapeNameSpace;
+namespace ShapeModel;
 
 public class Triangle : Shape2D
 {
@@ -22,7 +22,7 @@ public class Triangle : Shape2D
         GetTriangleSides();
         circumference = side.A + side.B + side.C;
 
-        area = CalculateTriangleArea();
+        area = GetTriangleArea();
 
         center = new Vector3(MathF.Round((p1.X + p2.X + p3.X) / 3, 1), MathF.Round((p1.Y + p2.Y + p3.Y) / 3, 1), 0.0f);
     }
@@ -36,23 +36,19 @@ public class Triangle : Shape2D
         GetTriangleSides();
         circumference = side.A + side.B + side.C;
 
-        area = CalculateTriangleArea();
+        area = GetTriangleArea();
 
         center = new Vector3((p1.X + p2.X + cornerPoints.p3.X) / 3, (p1.Y + p2.Y + cornerPoints.p3.Y) / 3, 0.0f);
     }    
 
     private void GetTriangleSides()
-    {           
-        side.A = CalulateDistance(cornerPoints.p3, cornerPoints.p2);
-        side.B = CalulateDistance(cornerPoints.p1, cornerPoints.p3);
-        side.C = CalulateDistance(cornerPoints.p1, cornerPoints.p2);
+    {
+        side.A = Vector2.Distance(cornerPoints.p3, cornerPoints.p2);
+        side.B = Vector2.Distance(cornerPoints.p1, cornerPoints.p3);
+        side.C = Vector2.Distance(cornerPoints.p1, cornerPoints.p2);
     }
-    private float CalulateDistance(Vector2 firstPoint, Vector2 secondPoint)
-    {        
-        return Vector2.Distance(firstPoint, secondPoint);
-    }
-
-    private float CalculateTriangleArea()
+  
+    private float GetTriangleArea()
     {
         float s = (side.A + side.B + side.C) / 2;
         return MathF.Sqrt(s * (s - side.A) * (s - side.B) * (s - side.C));
