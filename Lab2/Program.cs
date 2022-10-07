@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Numerics;
 using System.Reflection.Metadata;
+using System.Text;
 
 namespace Lab2;
 
@@ -25,10 +26,10 @@ internal class Program
         KeyValuePair<string, int> shapeOccurrence = GetMostOccurrentShape(shapes);
 
         string[] sortedShapeArray = SortShapeArray(shapes);
-        PrintArray(sortedShapeArray);
+        PrintShapeArray(sortedShapeArray);
 
-        PrintOutput(averageArea, triangleCircumferenceSum, biggestVolume3D);
-        PrintOutput(shapeOccurrence);
+        PrintShapeInfo(averageArea, triangleCircumferenceSum, biggestVolume3D);
+        PrintMostOccurrentShapes(shapeOccurrence);
 
         Console.ReadLine();
     }
@@ -54,18 +55,25 @@ internal class Program
         shapeOccurrence.Add("Square", shapes.OfType<Rectangle>().Count(t => t.IsSquare is true));
         shapeOccurrence.Add("Rectangle", shapes.OfType<Rectangle>().Count(t => t.IsSquare is false));
         shapeOccurrence.Add("Cube", shapes.OfType<Cuboid>().Count(t => t.IsCube is true));
-        shapeOccurrence.Add("Cuboid", shapes.OfType<Cuboid>().Count(t => t.IsCube is false));        
+        shapeOccurrence.Add("Cuboid", shapes.OfType<Cuboid>().Count(t => t.IsCube is false));
 
-        int highestValue = shapeOccurrence.Max(occ => occ.Value);
-        for (int i = 0; i < shapeOccurrence.Count; i++)
+        Dictionary<string, int> sortedShapeOccurrence = shapeOccurrence
+            .OrderByDescending(x => x.Value)
+            .ToDictionary(x => x.Key, x => x.Value);
+
+        var sb = new StringBuilder();
+        int highestOccurrenceValue = sortedShapeOccurrence.ElementAt(0).Value;
+
+        for (int i = 0; i < sortedShapeOccurrence.Count; i++)
         {
-            if (shapeOccurrence.ElementAt(i).Value.Equals(highestValue))
-            {
-                return shapeOccurrence.ElementAt(i);
+            if (highestOccurrenceValue == sortedShapeOccurrence.ElementAt(i).Value) 
+            { 
+                sb.Append(sortedShapeOccurrence.ElementAt(i).Key + ", ");
             }
+            else
+                break;
         }
-
-        return new KeyValuePair<string, int>("No Shape Found", 0);
+        return new KeyValuePair<string, int>(sb.ToString(), highestOccurrenceValue);
     }
     static string[] SortShapeArray(Shape[] shapes)
     {
@@ -86,23 +94,23 @@ internal class Program
 
         return sortedShapeArray;
     }
-    static void PrintArray(string[] shapes)
+    static void PrintShapeArray(string[] shapes)
     {
-        Console.WriteLine("{0, -9} {1, -22} {2}", "Shape", "Center", "Values" + "\n");
+        Console.WriteLine("{0, -10} {1, -25} {2}", "Shape", "Center", "Values" + "\n");
 
         foreach (var shape in shapes)
         {
             Console.WriteLine(shape);
         }
     }
-    static void PrintOutput(float averageArea, float triangleCercumferenceSum, float biggestVolume3D)
+    static void PrintShapeInfo(float averageArea, float triangleCercumferenceSum, float biggestVolume3D)
     {
-        Console.WriteLine($"\nAvrage area \t\t\t|: {averageArea} units");
-        Console.WriteLine($"Sum of triangles circumferance  |: {triangleCercumferenceSum} units");
-        Console.WriteLine($"Biggest 3D Shapes volume \t|: {biggestVolume3D} units");
+        Console.WriteLine($"\nAvrage {"area", -30} {averageArea:f2} units^2");
+        Console.WriteLine($"Sum of triangles {"circumferance", -20} {triangleCercumferenceSum:f2} units");
+        Console.WriteLine($"Biggest 3D Shapes {"volume", -19} {biggestVolume3D:f2} units^3");
     }
-    static void PrintOutput(KeyValuePair<string, int> shapeOccorrance)
+    static void PrintMostOccurrentShapes(KeyValuePair<string, int> shapeOccorrance)
     {
-        Console.WriteLine($"\n  Most occurrant shape was {shapeOccorrance.Key}, it occorred {shapeOccorrance.Value} times.");
+        Console.WriteLine($"\nMost occurrant shape was {shapeOccorrance.Key}the occurence was {shapeOccorrance.Value}.");
     }
 }

@@ -9,38 +9,38 @@ namespace ShapeModel;
 
 public class Sphere : Shape3D
 {
-    private Vector3 center;
+    private Vector3 _center;
 
-    private float radius;
-    private float area;
-    private float volume;
+    private float _radius;
+    private float _area;
+    private float _volume;
 
     public Sphere(Vector3 center, float radius)
     {
-        this.center = center;
-        this.radius = radius;
+        _center = center;
+        _radius = radius;
 
-        area = 4 * MathF.PI * MathF.Pow(radius, 2);
-        volume = (4 * MathF.PI * MathF.Pow(radius, 3)) / 3;
+        _area = 4 * MathF.PI * MathF.Pow(radius, 2);
+        _volume = (4 * MathF.PI * MathF.Pow(radius, 3)) / 3;
     }
 
     public override float Area
     {
-        get => area;
+        get => _area;
     }
 
     public override float Volume
     {
-        get => volume;
+        get => _volume;
     }
 
     public override Vector3 Center
     {
-        get => center; 
+        get => _center; 
     }
 
     public override string ToString()
     {
-        return $"Sphere \t  @({center.X}; {center.Y}; {center.Z}):\t r = {radius}";
-    }
+        return $"{"Sphere",-10} @({_center.X:f2}; {_center.Y:f2}; {_center.Z:f2}): {"",5}r = {_radius:f2}";
+    } 
 }

@@ -10,51 +10,47 @@ namespace ShapeModel;
 
 public class Cuboid : Shape3D
 {
-    private Vector3 center;
-    private Vector3 size;
+    private Vector3 _center;
+    private Vector3 _size;
 
-    private float area;
-    private float volume;
+    private float _area;
+    private float _volume;
     public bool IsCube { get; private set; } = false;
 
     public Cuboid(Vector3 center, Vector3 size)
     {
-        this.center = center;
-        this.size = size;
+        _center = center;
+        _size = size;
 
-        area = 2 * (size.X * size.Y + size.X * size.Z + size.Y * size.Z);
-        volume = size.X * size.Y * size.Z;
+        _area = 2 * (size.X * size.Y + size.X * size.Z + size.Y * size.Z);
+        _volume = size.X * size.Y * size.Z;
 
         if (size.X == size.Y && size.Y == size.Z)
             IsCube = true;
     }
 
-    public Cuboid(Vector3 center, float width)
+    public Cuboid(Vector3 center, float width): this(center, Vector3.Zero)
     {
-        this.center = center;
-      
-        size = Vector3.One * width;
-
-        IsCube = true;
+        _size = Vector3.One * width;
     }
 
     public override float Area
     {
-        get => area;
+        get => _area;
     }
 
     public override float Volume
     {
-        get => volume;
+        get => _volume;
     }
 
     public override Vector3 Center
     {
-        get => new Vector3(center.X, center.Y, center.Z); 
+        get => new Vector3(_center.X, _center.Y, _center.Z); 
     }
 
     public override string ToString()
     {
-        return (IsCube ? "Cube" : "Cuboid") + $" \t  @({center.X}; {center.Y}; {center.Z}):\t w = {size.X}, h = {size.Y}, l = {size.Z}";        
+        return (IsCube ? $"{"Cube", -9}" : $"{"Cuboid", -9}") + $"  @({_center.X:f2}; {_center.Y:f2}; {_center.Z:f2}): {"",5}w = {_size.X:f2}, h = {_size.Y:f2}, l = {_size.Z:f2}";        
     }
 }
