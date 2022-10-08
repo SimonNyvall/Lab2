@@ -26,14 +26,10 @@ public class Circle : Shape2D
 
     public override float Area => _area;
   
-    public override Vector3 Center
-    {
-        get => new Vector3(_center.X, _center.Y, 0.0f); 
-    }
-    public override float Circumference
-    {
-        get => _circumference;
-    }
+    public override Vector3 Center => new Vector3(_center.X, _center.Y, 0.0f);
+
+    public override float Circumference => _circumference;
+    
     public override string ToString()
     {
         return $"{"Circle", -10} @({_center.X:f2}; {_center.Y:2}): {"",13} r = {_radius:f2}";

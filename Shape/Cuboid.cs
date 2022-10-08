@@ -34,20 +34,11 @@ public class Cuboid : Shape3D
         _size = Vector3.One * width;
     }
 
-    public override float Area
-    {
-        get => _area;
-    }
+    public override float Area => _area;
 
-    public override float Volume
-    {
-        get => _volume;
-    }
+    public override float Volume => _volume;
 
-    public override Vector3 Center
-    {
-        get => new Vector3(_center.X, _center.Y, _center.Z); 
-    }
+    public override Vector3 Center => new Vector3(_center.X, _center.Y, _center.Z); 
 
     public override string ToString()
     {

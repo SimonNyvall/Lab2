@@ -38,21 +38,12 @@ public class Rectangle : Shape2D
         _height = width;
     }
 
-    public override float Area
-    {
-        get => _area;
-    }
+    public override float Area => _area;
 
-    public override Vector3 Center
-    {
-        get => new Vector3(_center.X, _center.Y, 0.0f); 
-    }
+    public override Vector3 Center => new Vector3(_center.X, _center.Y, 0.0f);
 
-    public override float Circumference
-    {
-        get => _circumference;
-    }
-
+    public override float Circumference => _circumference;
+   
     public override string ToString()
     {
         return (IsSquare ? $"{"Square", -10}" : $"{"Rectangle", -10}") + $" @({_center.X:f2}; {_center.Y:f2}): {"", 10} w = {_width:f2}; h = {_height:f2}"; 

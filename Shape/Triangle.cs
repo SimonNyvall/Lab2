@@ -46,20 +46,11 @@ public class Triangle : Shape2D
         return MathF.Sqrt(s * (s - _side.A) * (s - _side.B) * (s - _side.C));
     }
 
-    public override float Area
-    {
-        get => _area;
-    }
+    public override float Area => _area;
 
-    public override Vector3 Center
-    {
-        get => _center;
-    }
+    public override Vector3 Center => _center;
 
-    public override float Circumference
-    {
-        get => _circumference;
-    }
+    public override float Circumference => _circumference;
 
     public override string ToString()
     {

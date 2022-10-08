@@ -24,20 +24,11 @@ public class Sphere : Shape3D
         _volume = (4 * MathF.PI * MathF.Pow(radius, 3)) / 3;
     }
 
-    public override float Area
-    {
-        get => _area;
-    }
+    public override float Area => _area;
 
-    public override float Volume
-    {
-        get => _volume;
-    }
+    public override float Volume => _volume;
 
-    public override Vector3 Center
-    {
-        get => _center; 
-    }
+    public override Vector3 Center => _center;
 
     public override string ToString()
     {
